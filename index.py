@@ -2,11 +2,11 @@
 # Example: biggie_size([-1, 3, 5, -5]) returns that same list, but whose values are now [-1, "big", "big", -5]
 
 test_list = [-1, 3, 5, -5]
-def biggie_size(input):
-    for i in range(0,len(input)):
-        if input[i] > 0:
-            input[i] = "big"
-    return input
+def biggie_size(param_list):
+    for i in range(0,len(param_list)):
+        if param_list[i] > 0:
+            param_list[i] = "big"
+    return param_list
 print(biggie_size(test_list))
 
 
@@ -15,15 +15,17 @@ print(biggie_size(test_list))
 # Example: count_positives([1,6,-4,-2,-7,-2]) changes the list to [1,6,-4,-2,-7,2] and returns it
 
 test_list = [-1,1,1,1]
+test_zero = [0,0,1,2,5,-3,-5]
 test_list_2 = [1,6,-4,-2,-7,-2]
-def count_pos(input):
+def count_pos(param_list):
     count = 0
-    for i in range(0,len(input)):
-        if input[i] > 0:
+    for i in range(0,len(param_list)):
+        if param_list[i] > 0:
             count += 1
-    input[len(input)-1] = count
-    return input
+    param_list[len(param_list)-1] = count
+    return param_list
 print(count_pos(test_list))
+print(count_pos(test_zero))
 print(count_pos(test_list_2))
 
 # Sum Total - Create a function that takes a list and returns the sum of all the values in the list.
@@ -32,10 +34,10 @@ print(count_pos(test_list_2))
 
 test_list = [1,2,3,4]
 test_list_2 = [6,3,-2]
-def sum_total(input):
+def sum_total(param_list):
     sum = 0
-    for i in range(len(input)):
-        sum += input[i]
+    for i in range(len(param_list)):
+        sum += param_list[i]
     return sum
 print(sum_total(test_list))
 print(sum_total(test_list_2))
@@ -44,12 +46,12 @@ print(sum_total(test_list_2))
 # Example: average([1,2,3,4]) should return 2.5
 
 test_list = [1,2,3,4]
-def average(input):
+def average(param_list):
     sum = 0
     avg = 0
-    for i in range(len(input)):
-        sum += input[i]
-    avg = sum / len(input)
+    for i in range(len(param_list)):
+        sum += param_list[i]
+    avg = sum / len(param_list)
     return avg
 print(average(test_list))
 
@@ -59,8 +61,8 @@ print(average(test_list))
 
 test_list = [37,2,1,-9]
 test_list_2 = []
-def get_length(input):
-    return len(input)
+def get_length(param_list):
+    return len(param_list)
 print(get_length(test_list))
 print(get_length(test_list_2))
 
@@ -70,12 +72,12 @@ print(get_length(test_list_2))
 
 test_list = [37,2,1,-9]
 test_list_2 = []
-def get_minimum(input):
+def get_minimum(param_list):
     min_val = 0
-    if len(input) > 0:
-        for i in range(len(input)):
-            if input[i] < min_val:
-                min_val = input[i]
+    if len(param_list) > 0:
+        for i in range(len(param_list)):
+            if param_list[i] < min_val:
+                min_val = param_list[i]
     else:
         return False
     return min_val
@@ -88,12 +90,12 @@ print(get_minimum(test_list_2))
 
 test_list = [37,2,1,-9]
 test_list_2 = []
-def get_maximum(input):
+def get_maximum(param_list):
     max_val = 0
-    if len(input) > 0:
-        for i in range(len(input)):
-            if input[i] > max_val:
-                max_val = input[i]
+    if len(param_list) > 0:
+        for i in range(len(param_list)):
+            if param_list[i] > max_val:
+                max_val = param_list[i]
     else:
         return False
     return max_val
@@ -104,7 +106,8 @@ print(get_maximum(test_list_2))
 # Example: ultimate_analysis([37,2,1,-9]) should return {'sumTotal': 31, 'average': 7.75, 'minimum': -9, 'maximum': 37, 'length': 4 }
 
 test_list = [37,2,1,-9]
-def ultimate_analysis(input):
+test_list_2 = [1,5,3,87,15,-123]
+def ultimate_analysis(param_list):
     new_dictionary = {
         "sum_total" : 0,
         "average"   : 0,
@@ -112,14 +115,14 @@ def ultimate_analysis(input):
         "maximum"   : 0,
         "length"    : 0
     }
-    sum, avg, min_val, max_val, length = 0, 0, 0, 0, len(input)
-    if input != None:
-        for i in range(len(input)):
-            sum += input[i]
-            if input[i] > max_val:
-                max_val = input[i]
-            elif input[i] < min_val:
-                min_val = input[i]
+    sum, avg, min_val, max_val, length = 0, 0, 0, 0, len(param_list)
+    if param_list != None:
+        for i in range(len(param_list)):
+            sum += param_list[i]
+            if param_list[i] > max_val:
+                max_val = param_list[i]
+            elif param_list[i] < min_val:
+                min_val = param_list[i]
         avg = sum/length
         new_dictionary["sum_total"] = sum
         new_dictionary["average"] = avg
@@ -127,7 +130,10 @@ def ultimate_analysis(input):
         new_dictionary["maximum"] = max_val
         new_dictionary["length"] = length
     return new_dictionary
-print(ultimate_analysis(test_list))
+new_dict_1 = ultimate_analysis(test_list)
+new_dict_2 = ultimate_analysis(test_list_2)
+print(new_dict_1)
+print(new_dict_2)
 
 
 # Reverse List - Create a function that takes a list and return that list with values reversed. Do this without creating a second list. (This challenge is known to appear during basic technical interviews.)
@@ -135,13 +141,13 @@ print(ultimate_analysis(test_list))
 
 test_list = [37,2,1,-9]
 test_list_2 = [1,2,3,4,5]
-def reverse_list(input):
-    counter = len(input)-1
-    for i in range(int(len(input) / 2)):
-        temp = input[i]
-        input[i] = input[counter]
-        input[counter] = temp
+def reverse_list(param_list):
+    counter = len(param_list)-1
+    for i in range(int(len(param_list) / 2)):
+        temp = param_list[i]
+        param_list[i] = param_list[counter]
+        param_list[counter] = temp
         counter -= 1
-    return input
+    return param_list
 print(reverse_list(test_list))
 print(reverse_list(test_list_2))
